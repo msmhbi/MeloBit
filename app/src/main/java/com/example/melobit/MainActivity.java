@@ -1,7 +1,9 @@
 package com.example.melobit;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -50,7 +52,15 @@ public class MainActivity extends AppCompatActivity{
         SongsRequestListener latestListener = new SongsRequestListener() {
             @Override
             public void didFetch(SongsResponse response) {
-                newSongs.setAdapter(new SongAdapter(MainActivity.this, response.getResults()));
+                newSongs.setAdapter(new SongAdapter(MainActivity.this, response.getResults(),
+                        new SongAdapter.ClickListener() {
+                            @Override
+                            public void onSongClick(int position, View v, String id) {
+                                Intent intent = new Intent(MainActivity.this, SongActivity.class);
+                                intent.putExtra("id", id);
+                                startActivity(intent);
+                            }
+                        }));
             }
             @Override
             public void didError(String errorMessage) {

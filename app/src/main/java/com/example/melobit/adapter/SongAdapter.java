@@ -20,8 +20,9 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder
 
     Context context;
     List<Song> songs;
+    private final ClickListener clickListener;
 
-    public static class SongViewHolder extends RecyclerView.ViewHolder {
+    public class SongViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView cover;
         TextView name, artist;
 
@@ -31,11 +32,23 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder
             name = itemView.findViewById(R.id.name);
             artist = itemView.findViewById(R.id.artist);
         }
+
+        @Override
+        public void onClick(View view) {
+            int position = getAdapterPosition();
+            if (position >= 0) {
+                clickListener.onSongClick(position, view, songs.get(position).getId());
+            }
+        }
+    }
+    public interface ClickListener {
+        void onSongClick(int position, View v, String id);
     }
 
-    public SongAdapter(Context context, List<Song> songs) {
+    public SongAdapter(Context context, List<Song> songs ,ClickListener clickListener) {
         this.context = context;
         this.songs = songs;
+        this.clickListener = clickListener;
     }
 
     @NonNull
