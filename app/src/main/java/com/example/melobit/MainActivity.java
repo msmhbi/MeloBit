@@ -53,13 +53,10 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void didFetch(SongsResponse response) {
                 newSongs.setAdapter(new SongAdapter(MainActivity.this, response.getResults(),
-                        new SongAdapter.ClickListener() {
-                            @Override
-                            public void onSongClick(int position, View v, String id) {
-                                Intent intent = new Intent(MainActivity.this, SongActivity.class);
-                                intent.putExtra("id", id);
-                                startActivity(intent);
-                            }
+                        (position, v, id) -> {
+                            Intent intent = new Intent(MainActivity.this, SongActivity.class);
+                            intent.putExtra("id", id);
+                            startActivity(intent);
                         }));
             }
             @Override

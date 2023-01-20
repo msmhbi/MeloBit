@@ -5,7 +5,11 @@
       <map>
         <entry key="..\:/Users/WIN10/AndroidStudioProjects/MeloBit3/app/src/main/res/drawable-v24/ic_search.xml" value="0.152" />
         <entry key="..\:/Users/WIN10/AndroidStudioProjects/MeloBit3/app/src/main/res/drawable-v24/musicnote.xml" value="0.152" />
+        <entry key="..\:/Users/WIN10/AndroidStudioProjects/MeloBit3/app/src/main/res/drawable/ic_baseline_pause_24.xml" value="0.1685" />
+        <entry key="..\:/Users/WIN10/AndroidStudioProjects/MeloBit3/app/src/main/res/drawable/ic_baseline_play_arrow_24.xml" value="0.1685" />
+        <entry key="..\:/Users/WIN10/AndroidStudioProjects/MeloBit3/app/src/main/res/drawable/ic_baseline_stop_24.xml" value="0.1685" />
         <entry key="..\:/Users/WIN10/AndroidStudioProjects/MeloBit3/app/src/main/res/layout/activity_main.xml" value="0.23802083333333332" />
+        <entry key="..\:/Users/WIN10/AndroidStudioProjects/MeloBit3/app/src/main/res/layout/activity_song.xml" value="0.23802083333333332" />
         <entry key="..\:/Users/WIN10/AndroidStudioProjects/MeloBit3/app/src/main/res/layout/activity_splashscreen.xml" value="0.23802083333333332" />
         <entry key="..\:/Users/WIN10/AndroidStudioProjects/MeloBit3/app/src/main/res/layout/artist_item.xml" value="0.23697916666666666" />
         <entry key="..\:/Users/WIN10/AndroidStudioProjects/MeloBit3/app/src/main/res/layout/song_item.xml" value="0.23802083333333332" />

@@ -31,6 +31,7 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder
             cover = itemView.findViewById(R.id.cover);
             name = itemView.findViewById(R.id.name);
             artist = itemView.findViewById(R.id.artist);
+            itemView.setOnClickListener(this);
         }
 
         @Override

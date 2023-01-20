@@ -1,91 +1,99 @@
 package com.example.melobit.models;
 
 import java.util.List;
+
 import com.google.gson.annotations.SerializedName;
 
 public class Song {
 
-	@SerializedName("duration")
-	private int duration;
+    @SerializedName("duration")
+    private int duration;
 
-	@SerializedName("hasVideo")
-	private boolean hasVideo;
+    @SerializedName("hasVideo")
+    private boolean hasVideo;
 
-	@SerializedName("copyrighted")
-	private boolean copyrighted;
+    @SerializedName("copyrighted")
+    private boolean copyrighted;
 
-	@SerializedName("image")
-	private Image image;
+    @SerializedName("lyrics")
+    private String lyrics;
 
-	@SerializedName("artists")
-	private List<Artist> artists;
+    @SerializedName("image")
+    private Image image;
 
-	@SerializedName("releaseDate")
-	private String releaseDate;
+    @SerializedName("artists")
+    private List<Artist> artists;
 
-	@SerializedName("album")
-	private Album album;
+    @SerializedName("releaseDate")
+    private String releaseDate;
 
-	@SerializedName("localized")
-	private boolean localized;
+    @SerializedName("album")
+    private Album album;
 
-	@SerializedName("id")
-	private String id;
+    @SerializedName("localized")
+    private boolean localized;
 
-	@SerializedName("audio")
-	private Audio audio;
+    @SerializedName("id")
+    private String id;
 
-	@SerializedName("title")
-	private String title;
+    @SerializedName("audio")
+    private Audio audio;
 
-	@SerializedName("downloadCount")
-	private String downloadCount;
+    @SerializedName("title")
+    private String title;
 
-	public int getDuration(){
-		return duration;
-	}
+    @SerializedName("downloadCount")
+    private String downloadCount;
 
-	public boolean isHasVideo(){
-		return hasVideo;
-	}
+    public int getDuration() {
+        return duration;
+    }
 
-	public boolean isCopyrighted(){
-		return copyrighted;
-	}
+    public boolean isHasVideo() {
+        return hasVideo;
+    }
 
-	public Image getImage(){
-		return image;
-	}
+    public boolean isCopyrighted() {
+        return copyrighted;
+    }
 
-	public List<Artist> getArtists(){
-		return artists;
-	}
+    public Image getImage() {
+        return image;
+    }
 
-	public String getReleaseDate(){
-		return releaseDate;
-	}
+    public List<Artist> getArtists() {
+        return artists;
+    }
 
-	public Album getAlbum(){
-		return album;
-	}
+    public String getReleaseDate() {
+        return releaseDate;
+    }
 
-	public boolean isLocalized(){
-		return localized;
-	}
+    public Album getAlbum() {
+        return album;
+    }
 
-	public String getId(){
-		return id;
-	}
+    public boolean isLocalized() {
+        return localized;
+    }
 
-	public Audio getAudio(){
-		return audio;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public String getTitle(){
-		return title;
-	}
+    public Audio getAudio() {
+        return audio;
+    }
 
-	public String getDownloadCount(){
-		return downloadCount;
-	}
+    public String getTitle() {
+        return title;
+    }
+
+    public String getLyrics() {
+        return lyrics;
+    }
+
+    public String getDownloadCount() {
+        return downloadCount;
+    }
 }
