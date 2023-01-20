@@ -3,8 +3,12 @@ package com.example.melobit;
 import androidx.annotation.NonNull;
 
 import com.example.melobit.models.ArtistsResponse;
+import com.example.melobit.models.SearchResponse;
 import com.example.melobit.models.Song;
 import com.example.melobit.models.SongsResponse;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -39,7 +43,7 @@ public class RequestManager {
         Call<SongsResponse> getTop10ThisWeek();
 
         @GET("search/query/{query}/0/50")
-        Call<SongsResponse> search(@Path("query") String query);
+        Call<SearchResponse> search(@Path("query") String query);
 
     }
 
@@ -136,19 +140,25 @@ public class RequestManager {
             }
         });
     }
-    public void search(SongsRequestListener listener, String term) {
-        Call<SongsResponse> results = apiCalls.search(term);
-        results.enqueue(new Callback<SongsResponse>() {
+    public void search(SearchRequestListener listener, String term) {
+        Call<SearchResponse> results = apiCalls.search(term);
+        results.enqueue(new Callback<SearchResponse>() {
             @Override
-            public void onResponse(@NonNull Call<SongsResponse> call, @NonNull Response<SongsResponse> response) {
+            public void onResponse(@NonNull Call<SearchResponse> call, @NonNull Response<SearchResponse> response) {
                 if (!response.isSuccessful()) {
                     listener.didError(response.message());
                     return;
                 }
-                listener.didFetch(response.body());
+                List<Song> songs = new ArrayList<>();
+                for (int i=0; i<response.body().getTotal();i++){
+                    if (response.body().getResults().get(i).getType().equals("song")){
+                        songs.add(response.body().getResults().get(i).getSong());
+                    }
+                }
+                listener.didFetch(songs);
             }
             @Override
-            public void onFailure(@NonNull Call<SongsResponse> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<SearchResponse> call, @NonNull Throwable t) {
                 listener.didError(t.getMessage());
             }
         });
@@ -168,6 +178,11 @@ interface ArtistsRequestListener {
 }
 interface SongRequestListener {
     void didFetch(Song response);
+
+    void didError(String status);
+}
+interface SearchRequestListener {
+    void didFetch(List<Song> response);
 
     void didError(String status);
 }
