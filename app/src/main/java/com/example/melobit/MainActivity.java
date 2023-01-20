@@ -3,7 +3,6 @@ package com.example.melobit;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -45,7 +44,8 @@ public class MainActivity extends AppCompatActivity{
             startActivity(intent);
         });
         btnSearch.setOnClickListener(view -> {
-            //todo
+            Intent intent = new Intent(MainActivity.this,SearchActivity.class);
+            startActivity(intent);
         });
 
         RequestManager manager = new RequestManager();
