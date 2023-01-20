@@ -38,6 +38,9 @@ public class RequestManager {
         @GET("song/top/week/0/100")
         Call<SongsResponse> getTop10ThisWeek();
 
+        @GET("search/query/{query}/0/50")
+        Call<SongsResponse> search(@Path("query") String query);
+
     }
 
     ApiCalls apiCalls = retrofit.create(ApiCalls.class);
@@ -127,6 +130,23 @@ public class RequestManager {
                 listener.didFetch(response.body());
             }
 
+            @Override
+            public void onFailure(@NonNull Call<SongsResponse> call, @NonNull Throwable t) {
+                listener.didError(t.getMessage());
+            }
+        });
+    }
+    public void search(SongsRequestListener listener, String term) {
+        Call<SongsResponse> results = apiCalls.search(term);
+        results.enqueue(new Callback<SongsResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<SongsResponse> call, @NonNull Response<SongsResponse> response) {
+                if (!response.isSuccessful()) {
+                    listener.didError(response.message());
+                    return;
+                }
+                listener.didFetch(response.body());
+            }
             @Override
             public void onFailure(@NonNull Call<SongsResponse> call, @NonNull Throwable t) {
                 listener.didError(t.getMessage());
