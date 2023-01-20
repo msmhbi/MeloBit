@@ -97,7 +97,7 @@ public class SongActivity extends AppCompatActivity {
         int day = Integer.parseInt(releaseDate[2]);
         DateConverter dateConverter = new DateConverter();
         JalaliDate jalaliDate = dateConverter.gregorianToJalali(year,month,day);
-        return jalaliDate.format(new JalaliDateFormatter("yyyy- M dd", JalaliDateFormatter.FORMAT_IN_PERSIAN));
+        return jalaliDate.format(new JalaliDateFormatter("yyyy M dd", JalaliDateFormatter.FORMAT_IN_PERSIAN));
     }
 
     private void setUpMediaPlayer(String url) {
