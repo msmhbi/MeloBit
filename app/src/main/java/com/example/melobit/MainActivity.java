@@ -41,7 +41,8 @@ public class MainActivity extends AppCompatActivity{
         TopSinger.setLayoutManager(layoutManager1);
 
         hitsBtn.setOnClickListener(view -> {
-            //todo
+            Intent intent = new Intent(MainActivity.this,TopSongsActivity.class);
+            startActivity(intent);
         });
         btnSearch.setOnClickListener(view -> {
             //todo

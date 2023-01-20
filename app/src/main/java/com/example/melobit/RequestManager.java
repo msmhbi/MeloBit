@@ -32,6 +32,12 @@ public class RequestManager {
         @GET("song/{id}")
         Call<Song> getSong(@Path("id") String id);
 
+        @GET("song/top/day/0/100")
+        Call<SongsResponse> getTop10Today();
+
+        @GET("song/top/week/0/100")
+        Call<SongsResponse> getTop10ThisWeek();
+
     }
 
     ApiCalls apiCalls = retrofit.create(ApiCalls.class);
@@ -86,6 +92,43 @@ public class RequestManager {
 
             @Override
             public void onFailure(@NonNull Call<Song> call, @NonNull Throwable t) {
+                listener.didError(t.getMessage());
+            }
+        });
+    }
+    public void getTop10Today(SongsRequestListener listener) {
+        Call<SongsResponse> todayHits = apiCalls.getTop10Today();
+        todayHits.enqueue(new Callback<SongsResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<SongsResponse> call, @NonNull Response<SongsResponse> response) {
+                if (!response.isSuccessful()) {
+                    listener.didError(response.message());
+                    return;
+                }
+                listener.didFetch(response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<SongsResponse> call, @NonNull Throwable t) {
+                listener.didError(t.getMessage());
+            }
+        });
+    }
+
+    public void getTop10ThisWeek(SongsRequestListener listener) {
+        Call<SongsResponse> thisWeekHits = apiCalls.getTop10ThisWeek();
+        thisWeekHits.enqueue(new Callback<SongsResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<SongsResponse> call, @NonNull Response<SongsResponse> response) {
+                if (!response.isSuccessful()) {
+                    listener.didError(response.message());
+                    return;
+                }
+                listener.didFetch(response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<SongsResponse> call, @NonNull Throwable t) {
                 listener.didError(t.getMessage());
             }
         });
